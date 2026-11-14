@@ -706,6 +706,14 @@
 
       if (btn) { btn.disabled = false; btn.textContent = 'Download All'; }
     }
+
+    // Prefill from ?url= (e.g. an iOS Shortcut on the share sheet) and fetch right away
+    const sharedUrl = new URLSearchParams(location.search).get('url');
+    if (sharedUrl) {
+      document.getElementById('urls').value = sharedUrl;
+      history.replaceState(null, '', location.pathname);
+      go();
+    }
   </script>
 </body>
 </html>
