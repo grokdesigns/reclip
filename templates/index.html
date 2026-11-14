@@ -4,22 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ReClip — Free Media Downloader</title>
+  <meta name="theme-color" content="#1e1e2e">
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* Catppuccin Mocha — https://catppuccin.com/palette */
     :root {
-      --bg: #f4f1eb;
-      --fg: #3a3a38;
-      --accent: #e85d2a;
-      --accent-hover: #d04e1f;
-      --muted: #9c9889;
-      --card: #fff;
-      --card-border: #e2ded6;
-      --success: #2d8a4e;
-      --error: #c43d3d;
+      color-scheme: dark;
+      --bg: #1e1e2e;            /* base */
+      --fg: #cdd6f4;            /* text */
+      --fg-hover: #bac2de;      /* subtext1 */
+      --accent: #cba6f7;        /* mauve */
+      --accent-hover: #b4befe;  /* lavender */
+      --on-accent: #11111b;     /* crust */
+      --muted: #9399b2;         /* overlay2 */
+      --card: #181825;          /* mantle */
+      --card-border: #313244;   /* surface0 */
+      --success: #a6e3a1;       /* green */
+      --error: #f38ba8;         /* red */
       --radius: 14px;
-      --shimmer: linear-gradient(90deg, #ebe8e2 25%, #f0ede7 50%, #ebe8e2 75%);
+      --shimmer: linear-gradient(90deg, #313244 25%, #45475a 50%, #313244 75%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,7 +88,7 @@
     }
     textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(232, 93, 42, 0.08);
+      box-shadow: 0 0 0 3px rgba(203, 166, 247, 0.15);
     }
     textarea::placeholder { color: var(--muted); }
 
@@ -128,7 +133,7 @@
       border: none;
       border-radius: 10px;
       background: var(--accent);
-      color: #fff;
+      color: var(--on-accent);
       font-family: 'DM Mono', monospace;
       font-size: 0.82rem;
       font-weight: 500;
@@ -257,10 +262,10 @@
       letter-spacing: 0.03em;
       text-transform: uppercase;
     }
-    .card-dl-btn:hover { background: #2d2d2a; }
+    .card-dl-btn:hover { background: var(--fg-hover); }
     .card-dl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    .card-dl-btn.done { background: var(--success); color: #fff; }
-    .card-dl-btn.error { background: var(--error); color: #fff; }
+    .card-dl-btn.done { background: var(--success); color: var(--on-accent); }
+    .card-dl-btn.error { background: var(--error); color: var(--on-accent); }
 
     .card-status {
       font-size: 0.68rem;
@@ -284,14 +289,14 @@
     .q-chip.active {
       border-color: var(--fg);
       color: var(--fg);
-      background: rgba(26,26,24,0.04);
+      background: rgba(205, 214, 244, 0.06);
     }
     .q-chip:hover:not(.active) { border-color: var(--muted); }
 
     /* Error card */
     .card.card-error {
-      border-color: rgba(196, 61, 61, 0.2);
-      background: rgba(196, 61, 61, 0.03);
+      border-color: rgba(243, 139, 168, 0.3);
+      background: rgba(243, 139, 168, 0.05);
     }
     .card-error-icon {
       width: 100%;
@@ -299,7 +304,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(196, 61, 61, 0.08);
+      background: rgba(243, 139, 168, 0.1);
       color: var(--error);
     }
     .card-error-icon svg {
@@ -340,7 +345,7 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
-    .dl-all-btn:hover { background: #2d2d2a; }
+    .dl-all-btn:hover { background: var(--fg-hover); }
     .dl-all-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     .spin {
