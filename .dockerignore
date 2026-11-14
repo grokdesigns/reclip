@@ -13,3 +13,5 @@ Dockerfile
 .env.*
 .vscode
 .idea
+venv
+.claude

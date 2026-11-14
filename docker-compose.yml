@@ -5,6 +5,11 @@ services:
     container_name: reclip
     ports:
       - "8899:8899"
+    environment:
+      # Strongly recommended whenever the port is reachable from other devices
+      RECLIP_PASSWORD: ${RECLIP_PASSWORD:-}
+      # Hostnames you open the UI with, besides IPs, localhost and *.local
+      RECLIP_ALLOWED_HOSTS: ${RECLIP_ALLOWED_HOSTS:-}
     volumes:
       - reclip-downloads:/app/downloads
     restart: unless-stopped

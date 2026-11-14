@@ -33,8 +33,27 @@ Open **http://localhost:8899**.
 Or with Docker:
 
 ```bash
-docker build -t reclip . && docker run -p 8899:8899 reclip
+docker build -t reclip . && docker run -p 8899:8899 -e RECLIP_PASSWORD=changeme reclip
 ```
+
+## Configuration
+
+All settings are environment variables:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `PORT` | `8899` | Port for `./reclip.sh` / `python3 app.py` |
+| `HOST` | `127.0.0.1` | Bind address for `./reclip.sh` (the Docker image binds `0.0.0.0`) |
+| `RECLIP_PASSWORD` | _(none)_ | Require this password (HTTP Basic auth, any username). **Set it whenever ReClip is reachable from other devices.** |
+| `RECLIP_ALLOWED_HOSTS` | _(none)_ | Comma-separated hostnames you open the UI with. IP addresses, `localhost` and `*.local` always work; other names are rejected to block DNS-rebinding attacks. |
+| `RECLIP_ALLOW_PRIVATE_URLS` | _(off)_ | Set to `1` to allow downloading from private/LAN addresses (blocked by default to prevent SSRF). |
+| `RECLIP_MAX_CONCURRENT` | `3` | Downloads running at once (others queue) |
+| `RECLIP_MAX_PENDING` | `20` | Queued + running downloads before new ones are refused |
+| `RECLIP_MAX_PLAYLIST` | `100` | Maximum videos expanded from one playlist |
+| `RECLIP_FILE_TTL` | `3600` | Seconds to keep finished files on the server (`0` = forever) |
+| `RECLIP_NO_UPDATE` | _(off)_ | Set to `1` to skip updating yt-dlp on startup |
+
+MP4 downloads are made compatible with iOS Photos/Messages (H.264 or HEVC + AAC). Resolutions only available as VP9/AV1 (typically YouTube 1440p and above) are re-encoded, which can take a while.
 
 ## Usage
 
